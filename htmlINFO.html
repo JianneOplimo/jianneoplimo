@@ -24,8 +24,269 @@
     </defs>
   </svg>
 
-  <head>
-    <link rel="stylesheet" href="cssINFO.css">
-    <script src="jsINFO.js"></script>
-  </head>
+<style>
+    header {
+    position: relative;
+  }
   
+  .overlay-image {
+    position: absolute;
+    top: 150px;
+    left: 50px;
+    z-index: 10; /* Ensure the image is on top of the SVG animation */
+    width: 500px; /* Adjust the size as needed */
+    height: auto;
+    border: 10px solid #fff; /* White border */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+  
+  }
+  
+  
+  #hearts {
+    position: relative;
+    z-index: 0; /* Ensure the SVG is behind the image */
+  }
+  body {
+    margin: 0;
+    font-family: Helvetica, sans-serif;
+    background-color: #f4f4f4;
+  }
+  
+  a {
+    color: #ff5376;
+  }
+  
+  /* header */
+  
+  .header {
+    background-color: #fff;
+    box-shadow: 1px 1px 4px 0 rgba(0,0,0,.1);
+    position: fixed;
+    width: 100%;
+    z-index: 3;
+    font-family:Verdana;
+  }
+  
+  .header ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+    background-color: #fff;
+  }
+  
+  .header li a {
+    display: block;
+    padding: 20px 20px;
+    border-right: 1px solid #f4f4f4;
+    text-decoration: none;
+  }
+  
+  .header li a:hover,
+  .header .menu-btn:hover {
+    background-color: #f4f4f4;
+  }
+  
+  .header .logo {
+    display: block;
+    float: left;
+    font-size: 2em;
+    padding: 10px 20px;
+    text-decoration: none;
+  }
+  
+  /* menu */
+  
+  .header .menu {
+    clear: both;
+    max-height: 0;
+    transition: max-height .2s ease-out;
+  }
+  
+  /* menu icon */
+  
+  .header .menu-icon {
+    cursor: pointer;
+    display: inline-block;
+    float: right;
+    padding: 28px 20px;
+    position: relative;
+    user-select: none;
+  }
+  
+  .header .menu-icon .navicon {
+    background: #333;
+    display: block;
+    height: 2px;
+    position: relative;
+    transition: cubic-bezier() .2s ease-out;
+    width: 18px;
+  }
+  
+  .header .menu-icon .navicon:before,
+  .header .menu-icon .navicon:after {
+    background: #333;
+    content: '';
+    display: block;
+    height: 100%;
+    position: absolute;
+    transition: all .2s ease-out;
+    width: 100%;
+  }
+  
+  .header .menu-icon .navicon:before {
+    top: 5px;
+  }
+  
+  .header .menu-icon .navicon:after {
+    top: -5px;
+  }
+  
+  /* menu btn */
+  
+  .header .menu-btn {
+    display: none;
+  }
+  
+  .header .menu-btn:checked ~ .menu {
+    max-height: 240px;
+  }
+  
+  .header .menu-btn:checked ~ .menu-icon .navicon {
+    background: transparent;
+  }
+  
+  .header .menu-btn:checked ~ .menu-icon .navicon:before {
+    transform: rotate(-45deg);
+  }
+  
+  .header .menu-btn:checked ~ .menu-icon .navicon:after {
+    transform: rotate(45deg);
+  }
+  
+  .header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
+  .header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
+    top: 0;
+  }
+  
+  /* 48em = 768px */
+  
+  @media (min-width: 48em) {
+    .header li {
+      float: left;
+    }
+    .header li a {
+      padding: 20px 30px;
+    }
+    .header .menu {
+      clear: none;
+      float: right;
+      max-height: none;
+    }
+    .header .menu-icon {
+      display: none;
+    }
+  }
+  
+  
+  body{overflow:hidden;}
+  svg {
+    width: 100vw;
+    height: 100vh;
+  }
+  .text-box {
+  color: ff5376;
+    position: absolute;
+    top: 200px; /* 30px from the top of the header + 10px offset */
+    left: 700px; /* 50px (image width) + 30px margin + 10px offset */
+    padding: 10px;
+    background-color: #f8f9fa;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    z-index: 10; /* Ensure the box is on top of the SVG animation */
+  }
+    .chat-box-1 {
+  color: ff5376;
+    position: absolute;
+    top: 350px; /* 30px from the top of the header + 10px offset */
+    left: 700px; /* 50px (image width) + 30px margin + 10px offset */
+    padding: 10px;
+    background-color: #f8f9fa;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    z-index: 10; /* Ensure the box is on top of the SVG animation */
+  }
+  
+   .button-container {
+    position: relative;
+  }
+  
+  .creative-button {
+    position: absolute;
+    top: 490px;
+    left: 700px; /* Align with the chat-box-1 */
+    padding: 15px 30px;
+    font-size: 25px;
+    font-family: Verdana, sans-serif;
+    color: #fff;
+    background-color: #ff69b4; /* Pink background color */
+    border: none;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    z-index: 20; /* Ensure it appears on top of the SVG */
+  }
+  
+  .creative-button:hover {
+    background-color: #ff85c1;
+    transform: translateY(-3px);
+  }
+  
+  .creative-button:active {
+    background-color: #ff529d;
+    transform: translateY(1px);
+  }
+</style>
+  <script> 
+  const colors = ["#e27396","#ea9ab2","#efcfe3","#eaf2d7","#b3dee2","#fff4e9"];
+const SVG_NS = 'http://www.w3.org/2000/svg';
+const SVG_XLINK = "http://www.w3.org/1999/xlink";
+
+let heartsRy = []
+
+function useTheHeart(n){
+  let use = document.createElementNS(SVG_NS, 'use');
+  use.n = n;
+  use.setAttributeNS(SVG_XLINK, 'xlink:href', '#heart');
+  use.setAttributeNS(null, 'transform', `scale(${use.n})`);
+  use.setAttributeNS(null, 'fill', colors[n%colors.length]);
+  use.setAttributeNS(null, 'x', -69);
+  use.setAttributeNS(null, 'y', -69);
+  use.setAttributeNS(null, 'width', 138);
+  use.setAttributeNS(null, 'height', 138);
+  
+  heartsRy.push(use)
+  hearts.appendChild(use);
+}
+
+for(let n = 18; n >= 0; n--){useTheHeart(n)}
+
+function Frame(){
+  window.requestAnimationFrame(Frame);
+  for(let i = 0; i < heartsRy.length; i++){
+    if(heartsRy[i].n < 18){heartsRy[i].n +=.01
+     }else{
+     heartsRy[i].n = 0;
+     hearts.appendChild(heartsRy[i])
+    }
+    heartsRy[i].setAttributeNS(null, 'transform', `scale(${heartsRy[i].n})`);
+  }
+}
+
+Frame()
+
+  </script>
